@@ -25,7 +25,7 @@ export class BlogListComponent implements OnInit {
   blogPosts: BlogPost[] = [];
   totalPosts = 0;
   currentPage = 1;
-  pageSize = 6;
+  pageSize = 50;
   totalPages = 0;
   loading = false;
 
