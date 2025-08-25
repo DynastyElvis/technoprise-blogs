@@ -2,8 +2,11 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.1.
 
-### Landing Page
-![Blogs](https://raw.githubusercontent.com/DynastyElvis/technoprise-blogs/refs/heads/main/frontend/blog-frontend/public/Screenshot%202025-08-25%20125249.png)
+### All Blogs
+![Blogs](https://github.com/DynastyElvis/technoprise-blogs/blob/main/frontend/blog-frontend/public/Screenshot%202025-08-25%20130211.png)
+
+### Single Blog
+![Blogs](https://github.com/DynastyElvis/technoprise-blogs/blob/main/frontend/blog-frontend/public/Screenshot%202025-08-25%20130156.png)
 
 
 ## Development server
