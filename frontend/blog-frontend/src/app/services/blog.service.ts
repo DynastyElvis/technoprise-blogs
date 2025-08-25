@@ -68,6 +68,13 @@ export class BlogService {
 
   getBlogPost(slug: string): Observable<BlogPost> {
     return this.http.get<BlogPost>(`${this.apiUrl}/posts/${slug}`).pipe(
+      // Merge with locally stored data (e.g., imageUrl)
+      map((post) => {
+        const stored = this.getStoredPosts().find(p => p.slug === slug);
+        return stored && stored.imageUrl && !post.imageUrl 
+          ? { ...post, imageUrl: stored.imageUrl } 
+          : post;
+      }),
       catchError(() => {
         const found = this.getStoredPosts().find(p => p.slug === slug);
         return of(found as BlogPost);
