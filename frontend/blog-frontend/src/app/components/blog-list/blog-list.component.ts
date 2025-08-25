@@ -42,7 +42,8 @@ export class BlogListComponent implements OnInit {
     this.loading = true;
     this.blogService.getBlogPosts(this.currentPage, this.pageSize).subscribe({
       next: (response: BlogResponse) => {
-        this.blogPosts = response.posts;
+        // Newest first (by id desc as a proxy for create order)
+        this.blogPosts = [...response.posts].sort((a, b) => (b.id || 0) - (a.id || 0));
         this.totalPosts = response.total;
         this.totalPages = response.totalPages;
         this.loading = false;

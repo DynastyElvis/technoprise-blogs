@@ -1,10 +1,10 @@
 // Header styles
 .header-toolbar {
-    background-color: #f5f5f5;
-    color: #333;
-    padding: 0 2rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  }
+  background: #f7f8fb;
+  color: #111827;
+  padding: 0 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
   
   .toolbar-content {
     display: flex;
@@ -60,47 +60,17 @@
     gap: 1rem;
   }
   
-  .nav-button {
-    color: #333;
-    font-weight: 500;
-  }
+  .nav-button { color: #111827; font-weight: 700; }
   
-  .search-section {
-    .search-field {
-      width: 200px;
-      
-      ::ng-deep .mat-form-field-appearance-outline {
-        .mat-form-field-outline {
-          background-color: white;
-          border-radius: 4px;
-        }
-        
-        .mat-form-field-infix {
-          padding: 8px 12px;
-        }
-      }
-    }
-  }
+  .search-section { .search-field { width: 240px; } }
   
-  .create-button {
-    background-color: #666;
-    color: white;
-    font-weight: 500;
-    border-radius: 4px;
-  }
+  .create-button { background-color: var(--primary); color: #fff; font-weight: 700; border-radius: 8px; }
   
   // Main content
-  .main-content {
-    min-height: calc(100vh - 140px);
-    background-color: #fafafa;
-  }
+  .main-content { min-height: calc(100vh - 140px); background-color: #fcfcfe; }
   
   // Footer styles
-  .footer {
-    background-color: #666;
-    color: white;
-    padding: 1rem 2rem;
-  }
+  .footer { background: #f7f8fb; color: #111827; padding: 1rem 2rem; border-top: 1px solid #e5e7eb; }
   
   .footer-content {
     display: flex;
@@ -135,9 +105,7 @@
       justify-content: center;
     }
     
-    .search-section .search-field {
-      width: 150px;
-    }
+    .search-section .search-field { width: 100%; max-width: 320px; }
     
     .footer {
       padding: 1rem;

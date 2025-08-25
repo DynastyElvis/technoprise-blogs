@@ -16,9 +16,9 @@
         <mat-form-field appearance="outline" class="search-field">
           <input 
             matInput 
-            placeholder="Test" 
+            placeholder="Search blogs by title or content..." 
             [(ngModel)]="searchTerm"
-            (keyup.enter)="onSearch()"
+            (input)="onSearch()"
           >
           <mat-icon matSuffix (click)="onSearch()">search</mat-icon>
         </mat-form-field>

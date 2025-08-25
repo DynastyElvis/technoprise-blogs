@@ -54,6 +54,9 @@
               <img [src]="previewUrl" alt="Preview">
             </div>
           </div>
+          <div class="error-message" *ngIf="postForm.get('imageUrl')?.invalid && (postForm.get('imageUrl')?.touched || postForm.touched)">
+            Image is required
+          </div>
         </div>
   
         <!-- Blog Content -->

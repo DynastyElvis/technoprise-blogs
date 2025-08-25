@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 export interface BlogPost {
   id: number;
@@ -41,6 +41,15 @@ export class BlogService {
     }
 
     return this.http.get<BlogResponse>(`${this.apiUrl}/posts`, { params }).pipe(
+      // Merge any locally stored fields (e.g., imageUrl) into API results by slug
+      map((resp) => {
+        const stored = this.getStoredPosts();
+        const mergedPosts = resp.posts.map(p => {
+          const local = stored.find(s => s.slug === p.slug);
+          return local && local.imageUrl && !p.imageUrl ? { ...p, imageUrl: local.imageUrl } : p;
+        });
+        return { ...resp, posts: mergedPosts } as BlogResponse;
+      }),
       catchError(() => {
         const allPosts: BlogPost[] = this.getStoredPosts();
         const startIndex = (page - 1) * limit;
@@ -68,6 +77,17 @@ export class BlogService {
 
   createBlogPost(post: Partial<BlogPost>): Observable<BlogPost> {
     return this.http.post<BlogPost>(`${this.apiUrl}/posts`, post).pipe(
+      // Ensure imageUrl is preserved if backend omits it
+      map((created) => {
+        const withImage = (created.imageUrl || post.imageUrl)
+          ? { ...created, imageUrl: created.imageUrl || post.imageUrl }
+          : created;
+        // Store/merge locally so lists can pick up imageUrl immediately
+        const existing = this.getStoredPosts();
+        const updated = [withImage as BlogPost, ...existing.filter(e => e.slug !== withImage.slug)];
+        this.saveStoredPosts(updated);
+        return withImage as BlogPost;
+      }),
       catchError(() => {
         const existing = this.getStoredPosts();
         const newPost: BlogPost = {

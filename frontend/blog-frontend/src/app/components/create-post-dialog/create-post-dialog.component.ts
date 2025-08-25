@@ -44,7 +44,7 @@ export class CreatePostDialogComponent {
       title: ['', [Validators.required, Validators.minLength(5)]],
       date: [new Date().toISOString().slice(0, 10), [Validators.required]],
       slug: ['', [Validators.required, Validators.minLength(3)]],
-      imageUrl: [''],
+      imageUrl: ['', [Validators.required]],
       content: ['', [Validators.required, Validators.minLength(50)]]
     });
   }
