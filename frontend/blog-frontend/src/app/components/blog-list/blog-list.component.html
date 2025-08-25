@@ -1,0 +1,42 @@
+<div class="blog-list-container">
+    <!-- Header Section -->
+    <div class="header-section">
+      <h1 class="main-title">The Accessibility Blog</h1>
+      <p class="subtitle">The voice of the workplace</p>
+    </div>
+  
+    <!-- Loading State -->
+    <div *ngIf="loading" class="loading-state">
+      <p>Loading posts...</p>
+    </div>
+  
+    <!-- Blog Posts Grid -->
+    <div *ngIf="!loading" class="posts-grid">
+      <mat-card 
+        *ngFor="let post of blogPosts" 
+        class="post-card"
+        (click)="viewPost(post.slug)"
+      >
+        <div class="image-placeholder">
+          <!-- Placeholder for blog image -->
+        </div>
+        <mat-card-content class="card-content">
+          <div class="post-meta">{{ post.date }}</div>
+          <h3 class="post-title">{{ post.title }}</h3>
+          <p class="post-excerpt">{{ post.excerpt }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  
+    <!-- Pagination -->
+    <div *ngIf="!loading && totalPosts > pageSize" class="pagination-container">
+      <mat-paginator
+        [length]="totalPosts"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="[6, 12, 24]"
+        [showFirstLastButtons]="true"
+        (page)="onPageChange($event)"
+        aria-label="Select page of blog posts">
+      </mat-paginator>
+    </div>
+  </div>

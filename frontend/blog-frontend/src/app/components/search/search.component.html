@@ -1,0 +1,63 @@
+<div class="search-container">
+    <!-- Back Button -->
+    <div class="back-button-container">
+      <button mat-button class="back-button" (click)="goBack()">
+        <mat-icon>arrow_back</mat-icon>
+        Back to blog posts
+      </button>
+    </div>
+  
+    <!-- Search Header -->
+    <div class="search-header">
+      <h1 class="search-title">Search Blogs</h1>
+      
+      <!-- Search Input -->
+      <div class="search-input-container">
+        <mat-form-field appearance="outline" class="search-field">
+          <input 
+            matInput 
+            placeholder="Test" 
+            [(ngModel)]="searchTerm"
+            (keyup.enter)="onSearch()"
+          >
+          <mat-icon matSuffix (click)="onSearch()">search</mat-icon>
+        </mat-form-field>
+      </div>
+    </div>
+  
+    <!-- Search Results -->
+    <div class="search-results">
+      <!-- Results Count -->
+      <div *ngIf="hasSearched && !loading" class="results-count">
+        Showing {{ totalResults }} Results of "Accessibility"
+      </div>
+  
+      <!-- Loading State -->
+      <div *ngIf="loading" class="loading-state">
+        <p>Searching...</p>
+      </div>
+  
+      <!-- No Results -->
+      <div *ngIf="hasSearched && !loading && totalResults === 0" class="no-results">
+        <p>No results found for "{{ searchTerm }}"</p>
+      </div>
+  
+      <!-- Results Grid -->
+      <div *ngIf="!loading && searchResults.length > 0" class="results-grid">
+        <mat-card 
+          *ngFor="let post of searchResults" 
+          class="result-card"
+          (click)="viewPost(post.slug)"
+        >
+          <div class="image-placeholder">
+            <!-- Placeholder for blog image -->
+          </div>
+          <mat-card-content class="card-content">
+            <div class="post-meta">{{ post.date }}</div>
+            <h3 class="post-title">{{ post.title }}</h3>
+            <p class="post-excerpt">{{ post.excerpt }}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,100 @@
+<div class="dialog-container">
+    <div class="dialog-header">
+      <h2 mat-dialog-title>Create Blog Post</h2>
+      <p class="dialog-subtitle">Enter your blog details. Click save when you're done.</p>
+    </div>
+  
+    <mat-dialog-content class="dialog-content">
+      <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+        <!-- Blog Title -->
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Blog Title</mat-label>
+          <input 
+            matInput 
+            formControlName="title"
+            placeholder="My Article"
+            (input)="onTitleChange()"
+          >
+          <mat-error *ngIf="postForm.get('title')?.hasError('required')">
+            Title is required
+          </mat-error>
+          <mat-error *ngIf="postForm.get('title')?.hasError('minlength')">
+            Title must be at least 5 characters long
+          </mat-error>
+        </mat-form-field>
+  
+        <!-- Blog Slug -->
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Slug</mat-label>
+          <input 
+            matInput 
+            formControlName="slug"
+            placeholder="my-article"
+          >
+          <mat-error *ngIf="postForm.get('slug')?.hasError('required')">
+            Slug is required
+          </mat-error>
+          <mat-error *ngIf="postForm.get('slug')?.hasError('minlength')">
+            Slug must be at least 3 characters long
+          </mat-error>
+        </mat-form-field>
+  
+        <!-- Image Upload Placeholder -->
+        <div class="image-upload-section">
+          <label class="image-label">Image</label>
+          <div class="image-upload-area">
+            <mat-icon>cloud_upload</mat-icon>
+            <p>Please, upload images on less than 10 MB format.</p>
+            <button type="button" mat-stroked-button color="primary" class="browse-button">
+              Browse Files
+            </button>
+          </div>
+        </div>
+  
+        <!-- Blog Content -->
+        <mat-form-field appearance="outline" class="form-field content-field">
+          <mat-label>Text</mat-label>
+          <textarea 
+            matInput 
+            formControlName="content"
+            placeholder="Text"
+            rows="6"
+            cdkTextareaAutosize
+            cdkAutosizeMinRows="6"
+            cdkAutosizeMaxRows="12"
+          ></textarea>
+          <mat-error *ngIf="postForm.get('content')?.hasError('required')">
+            Content is required
+          </mat-error>
+          <mat-error *ngIf="postForm.get('content')?.hasError('minlength')">
+            Content must be at least 50 characters long
+          </mat-error>
+        </mat-form-field>
+  
+        <!-- Error Message -->
+        <div *ngIf="error" class="error-message">
+          {{ error }}
+        </div>
+      </form>
+    </mat-dialog-content>
+  
+    <mat-dialog-actions class="dialog-actions">
+      <button 
+        mat-button 
+        type="button" 
+        (click)="onCancel()"
+        [disabled]="loading"
+      >
+        Cancel
+      </button>
+      <button 
+        mat-raised-button 
+        color="primary" 
+        type="submit"
+        (click)="onSubmit()"
+        [disabled]="!postForm.valid || loading"
+      >
+        {{ loading ? 'Saving...' : 'Save Changes' }}
+      </button>
+    </mat-dialog-actions>
+  </div>

@@ -1,0 +1,151 @@
+// Header styles
+.header-toolbar {
+    background-color: #f5f5f5;
+    color: #333;
+    padding: 0 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .toolbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    
+    .logo-icon {
+      margin-right: 8px;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      
+      .line {
+        height: 2px;
+        background-color: #333;
+        border-radius: 1px;
+        
+        &:nth-child(1) {
+          width: 100%;
+        }
+        
+        &:nth-child(2) {
+          width: 60%;
+          margin: 2px 0;
+        }
+        
+        &:nth-child(3) {
+          width: 80%;
+        }
+      }
+    }
+    
+    .logo-text {
+      font-weight: 600;
+      font-size: 18px;
+    }
+  }
+  
+  .nav-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .nav-button {
+    color: #333;
+    font-weight: 500;
+  }
+  
+  .search-section {
+    .search-field {
+      width: 200px;
+      
+      ::ng-deep .mat-form-field-appearance-outline {
+        .mat-form-field-outline {
+          background-color: white;
+          border-radius: 4px;
+        }
+        
+        .mat-form-field-infix {
+          padding: 8px 12px;
+        }
+      }
+    }
+  }
+  
+  .create-button {
+    background-color: #666;
+    color: white;
+    font-weight: 500;
+    border-radius: 4px;
+  }
+  
+  // Main content
+  .main-content {
+    min-height: calc(100vh - 140px);
+    background-color: #fafafa;
+  }
+  
+  // Footer styles
+  .footer {
+    background-color: #666;
+    color: white;
+    padding: 1rem 2rem;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    
+    .logo-icon .line {
+      background-color: white;
+    }
+    
+    .footer-text {
+      font-size: 14px;
+    }
+  }
+  
+  // Responsive design
+  @media (max-width: 768px) {
+    .header-toolbar {
+      padding: 0 1rem;
+    }
+    
+    .toolbar-content {
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1rem 0;
+    }
+    
+    .nav-section {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .search-section .search-field {
+      width: 150px;
+    }
+    
+    .footer {
+      padding: 1rem;
+    }
+    
+    .footer-content {
+      flex-direction: column;
+      gap: 0.5rem;
+      text-align: center;
+    }
+  }
