@@ -12,6 +12,12 @@ body.mat-typography {
 /* Inherit font for all elements so Material components pick it up */
 body * { font-family: inherit; }
 
+/* Make Angular Material use Montserrat across components */
+.mat-typography, .mat-app-background { font-family: inherit !important; }
+.mat-button, .mat-raised-button, .mat-icon, .mat-form-field, .mat-input-element { font-family: inherit !important; }
+/* Ensure dialogs/menus (overlay) also use the font */
+.cdk-overlay-container * { font-family: inherit !important; }
+
 /* Color palette */
 :root {
   --primary: #6C63FF;        /* indigo */

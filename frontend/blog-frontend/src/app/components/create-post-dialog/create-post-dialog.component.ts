@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -23,7 +24,8 @@ import { BlogService } from '../../services/blog.service';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSnackBarModule
   ]
 })
 export class CreatePostDialogComponent {
@@ -35,7 +37,8 @@ export class CreatePostDialogComponent {
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<CreatePostDialogComponent>,
-    private blogService: BlogService
+    private blogService: BlogService,
+    private snackBar: MatSnackBar
   ) {
     this.postForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(5)]],
@@ -80,6 +83,7 @@ export class CreatePostDialogComponent {
       this.blogService.createBlogPost(postData).subscribe({
         next: (createdPost) => {
           this.loading = false;
+          this.snackBar.open('Blog post created successfully', 'Close', { duration: 2500 });
           this.dialogRef.close(createdPost);
         },
         error: (error) => {

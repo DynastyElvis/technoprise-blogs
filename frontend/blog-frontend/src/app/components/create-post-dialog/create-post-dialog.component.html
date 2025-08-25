@@ -58,11 +58,11 @@
   
         <!-- Blog Content -->
         <mat-form-field appearance="outline" class="form-field content-field">
-          <mat-label>Text</mat-label>
+          <mat-label>Content</mat-label>
           <textarea 
             matInput 
             formControlName="content"
-            placeholder="Text"
+            placeholder="Write your article..."
             rows="6"
             cdkTextareaAutosize
             cdkAutosizeMinRows="6"
@@ -99,7 +99,7 @@
         (click)="onSubmit()"
         [disabled]="!postForm.valid || loading"
       >
-        {{ loading ? 'Saving...' : 'Save Changes' }}
+        {{ loading ? 'Saving...' : 'Save Post' }}
       </button>
     </mat-dialog-actions>
   </div>

@@ -32,14 +32,16 @@ export class AppComponent {
 
   openCreateDialog() {
     const dialogRef = this.dialog.open(CreatePostDialogComponent, {
-      width: '600px'
+      width: '760px',
+      maxWidth: '92vw'
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // Refresh the current view if on blog list
-        if (this.router.url === '/') {
-          window.location.reload();
+        // If we're on the blogs route, reload data by navigating to it
+        if (this.router.url.startsWith('/blogs') || this.router.url === '/') {
+          // Soft navigation to trigger data reload
+          this.router.navigateByUrl('/blogs');
         }
       }
     });
