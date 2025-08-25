@@ -1,0 +1,27 @@
+.header-toolbar { background: #f7f8fb; border-bottom: 1px solid #e5e7eb; }
+.toolbar-content { max-width: 1200px; margin: 0 auto; width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 8px 16px; }
+.logo { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+.logo-icon { display: grid; gap: 3px; }
+.logo-icon .line { width: 18px; height: 2px; background: #111827; }
+.logo-text { font-weight: 800; letter-spacing: -0.3px; }
+
+.nav-section { display: flex; align-items: center; gap: 12px; }
+.nav-button { font-weight: 700; }
+
+.search-section { min-width: 220px; }
+.search-field { width: 280px; }
+
+.create-button { font-weight: 700; }
+
+.main-content { max-width: 1200px; margin: 0 auto; padding: 16px; }
+
+.footer { border-top: 1px solid #e5e7eb; background: #f7f8fb; margin-top: 40px; }
+.footer-content { max-width: 1200px; margin: 0 auto; padding: 16px; display: flex; align-items: center; justify-content: space-between; }
+.footer-logo { display: flex; align-items: center; gap: 10px; }
+.footer-text { color: var(--muted); }
+
+@media (max-width: 700px) {
+  .toolbar-content { padding: 8px 10px; }
+  .search-field { width: 180px; }
+}
+

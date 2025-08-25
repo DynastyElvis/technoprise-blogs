@@ -1,7 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif; background: #fcfcfe; color: #1f2937; }
+/* Ensure Montserrat wins over Angular Material's default body font */
+body,
+body.mat-typography {
+  margin: 0;
+  font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif !important;
+  background: #fcfcfe;
+  color: #1f2937;
+}
+/* Inherit font for all elements so Material components pick it up */
+body * { font-family: inherit; }
 
 /* Color palette */
 :root {

@@ -9,6 +9,10 @@ import (
 	"strings"
 	"time"
 
+	"database/sql"
+	"os"
+
+	_ "github.com/go-sql-driver/mysql"
 	"github.com/gorilla/mux"
 	"github.com/rs/cors"
 )
@@ -173,7 +177,7 @@ func getBlogPosts(w http.ResponseWriter, r *http.Request) {
 // Get single blog post by slug
 func getBlogPost(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	
+
 	vars := mux.Vars(r)
 	slug := vars["slug"]
 
@@ -202,7 +206,7 @@ func createBlogPost(w http.ResponseWriter, r *http.Request) {
 	// Generate ID and slug
 	newPost.ID = len(blogPosts) + 1
 	newPost.Date = time.Now().Format("Jan 2006") + " • 5 min Read"
-	
+
 	// Generate slug from title if not provided
 	if newPost.Slug == "" {
 		newPost.Slug = strings.ToLower(strings.ReplaceAll(newPost.Title, " ", "-"))
@@ -218,12 +222,27 @@ func createBlogPost(w http.ResponseWriter, r *http.Request) {
 	}
 
 	blogPosts = append(blogPosts, newPost)
-	
+
 	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode(newPost)
 }
 
 func main() {
+	// Optional DB connection via env var
+	dsn := os.Getenv("DB_DSN")
+	if dsn == "" {
+		log.Printf("DB_DSN not set; using in-memory posts")
+	} else {
+		if db, err := sql.Open("mysql", dsn); err != nil {
+			log.Printf("[WARN] cannot open DB: %v", err)
+		} else if err := db.Ping(); err != nil {
+			log.Printf("[WARN] cannot ping DB: %v", err)
+		} else {
+			log.Printf("Connected to MySQL successfully")
+			defer db.Close()
+		}
+	}
+
 	r := mux.NewRouter()
 
 	// API routes
