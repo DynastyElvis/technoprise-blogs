@@ -17,11 +17,12 @@
         class="post-card"
         (click)="viewPost(post.slug)"
       >
-        <div class="image-placeholder">
-          <!-- Placeholder for blog image -->
+        <div class="card-image">
+          <img *ngIf="post.imageUrl" [src]="post.imageUrl" alt="" />
+          <div *ngIf="!post.imageUrl" class="image-placeholder"></div>
         </div>
         <mat-card-content class="card-content">
-          <div class="post-meta">{{ post.date }}</div>
+          <div class="post-meta">{{ post.date }} • 5 min Read</div>
           <h3 class="post-title">{{ post.title }}</h3>
           <p class="post-excerpt">{{ post.excerpt }}</p>
         </mat-card-content>

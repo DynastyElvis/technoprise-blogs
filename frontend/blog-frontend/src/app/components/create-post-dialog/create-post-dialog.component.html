@@ -23,6 +23,12 @@
           </mat-error>
         </mat-form-field>
   
+        <!-- Blog Date -->
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Blog Date</mat-label>
+          <input matInput formControlName="date" placeholder="YYYY-MM-DD">
+        </mat-form-field>
+
         <!-- Blog Slug -->
         <mat-form-field appearance="outline" class="form-field">
           <mat-label>Slug</mat-label>
@@ -39,15 +45,14 @@
           </mat-error>
         </mat-form-field>
   
-        <!-- Image Upload Placeholder -->
+        <!-- Image Upload -->
         <div class="image-upload-section">
           <label class="image-label">Image</label>
           <div class="image-upload-area">
-            <mat-icon>cloud_upload</mat-icon>
-            <p>Please, upload images on less than 10 MB format.</p>
-            <button type="button" mat-stroked-button color="primary" class="browse-button">
-              Browse Files
-            </button>
+            <input type="file" accept="image/*" (change)="onFileSelected($event)">
+            <div class="preview" *ngIf="previewUrl">
+              <img [src]="previewUrl" alt="Preview">
+            </div>
           </div>
         </div>
   

@@ -10,6 +10,7 @@ export interface BlogPost {
   slug: string;
   content: string;
   excerpt: string;
+  imageUrl?: string;
 }
 
 export interface BlogResponse {
@@ -26,6 +27,7 @@ export interface BlogResponse {
 })
 export class BlogService {
   private apiUrl = 'http://localhost:8080/api';
+  private storageKey = 'blog_posts';
 
   constructor(private http: HttpClient) { }
 
@@ -40,7 +42,7 @@ export class BlogService {
 
     return this.http.get<BlogResponse>(`${this.apiUrl}/posts`, { params }).pipe(
       catchError(() => {
-        const allPosts: BlogPost[] = MOCK_POSTS;
+        const allPosts: BlogPost[] = this.getStoredPosts();
         const startIndex = (page - 1) * limit;
         const paged = allPosts.slice(startIndex, startIndex + limit);
         return of({
@@ -58,7 +60,7 @@ export class BlogService {
   getBlogPost(slug: string): Observable<BlogPost> {
     return this.http.get<BlogPost>(`${this.apiUrl}/posts/${slug}`).pipe(
       catchError(() => {
-        const found = MOCK_POSTS.find(p => p.slug === slug);
+        const found = this.getStoredPosts().find(p => p.slug === slug);
         return of(found as BlogPost);
       })
     );
@@ -67,18 +69,35 @@ export class BlogService {
   createBlogPost(post: Partial<BlogPost>): Observable<BlogPost> {
     return this.http.post<BlogPost>(`${this.apiUrl}/posts`, post).pipe(
       catchError(() => {
+        const existing = this.getStoredPosts();
         const newPost: BlogPost = {
-          id: MOCK_POSTS.length + 1,
+          id: existing.length + 1,
           title: post.title || 'Untitled',
           date: new Date().toISOString().slice(0, 10),
           slug: (post.slug || (post.title || 'untitled').toLowerCase().replace(/\s+/g, '-')) + '-' + (MOCK_POSTS.length + 1),
           content: post.content || '',
-          excerpt: post.excerpt || ''
+          excerpt: post.excerpt || (post.content ? String(post.content).slice(0, 160) : ''),
+          imageUrl: post.imageUrl
         };
-        MOCK_POSTS.unshift(newPost);
+        const updated = [newPost, ...existing];
+        this.saveStoredPosts(updated);
         return of(newPost);
       })
     );
+  }
+
+  private getStoredPosts(): BlogPost[] {
+    const raw = localStorage.getItem(this.storageKey);
+    if (raw) {
+      try { return JSON.parse(raw) as BlogPost[]; } catch { /* fallthrough */ }
+    }
+    // seed with mock data once
+    this.saveStoredPosts(MOCK_POSTS);
+    return MOCK_POSTS;
+  }
+
+  private saveStoredPosts(posts: BlogPost[]): void {
+    localStorage.setItem(this.storageKey, JSON.stringify(posts));
   }
 }
 

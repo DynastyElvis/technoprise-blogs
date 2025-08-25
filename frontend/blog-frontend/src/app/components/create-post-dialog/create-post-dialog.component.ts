@@ -30,6 +30,7 @@ export class CreatePostDialogComponent {
   postForm: FormGroup;
   loading = false;
   error = '';
+  previewUrl: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -38,9 +39,23 @@ export class CreatePostDialogComponent {
   ) {
     this.postForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(5)]],
+      date: [new Date().toISOString().slice(0, 10), [Validators.required]],
       slug: ['', [Validators.required, Validators.minLength(3)]],
+      imageUrl: [''],
       content: ['', [Validators.required, Validators.minLength(50)]]
     });
+  }
+
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const file = input.files && input.files[0];
+    if (!file) { return; }
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.previewUrl = reader.result as string;
+      this.postForm.patchValue({ imageUrl: this.previewUrl });
+    };
+    reader.readAsDataURL(file);
   }
 
   onTitleChange(): void {

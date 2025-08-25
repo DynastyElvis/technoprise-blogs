@@ -28,9 +28,8 @@
       </header>
   
       <div class="post-image">
-        <div class="image-placeholder">
-          <!-- Placeholder for blog image -->
-        </div>
+        <img *ngIf="post.imageUrl" [src]="post.imageUrl" alt="" />
+        <div *ngIf="!post.imageUrl" class="image-placeholder"></div>
       </div>
   
       <div class="post-content">

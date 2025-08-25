@@ -1,4 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif; background: #fcfcfe; color: #1f2937; }
+
+/* Color palette */
+:root {
+  --primary: #6C63FF;        /* indigo */
+  --primary-600: #5850EC;
+  --accent: #FF6584;         /* pink */
+  --muted: #6B7280;          /* gray-500 */
+  --surface: #ffffff;
+  --card: #f3f4f6;
+}
+
+/* Utility */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+.btn-primary { background: var(--primary); color: #fff; border: none; padding: 10px 16px; border-radius: 8px; font-weight: 700; }
+.btn-primary:hover { background: var(--primary-600); }
+
+/* Typography */
+h1, h2, h3, h4 { font-weight: 800; }
+p { color: #374151; }
