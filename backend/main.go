@@ -26,7 +26,7 @@ type BlogPost struct {
 var blogPosts = []BlogPost{
 	{
 		ID:      1,
-		Title:   "Understanding Compensatory Damages in an ADA Context",
+		Title:   "Understanding Elvis",
 		Date:    "Dec 2023 • 5 min Read",
 		Slug:    "understanding-compensatory-damages-ada",
 		Content: "In ADA cases, prevailing plaintiffs are often awarded what's known as compensatory damages. These, along with punitive damages, help make up the sum of remedies owed by defendants found guilty of ADA violations. In this piece, we will provide a brief introduction to compensatory damages and the role they serve in ADA cases. What are compensatory damages? The Equal Employment Opportunity Commission (EEOC) defines compensatory damages as damages that 'restore for or make up for losses caused by discrimination.' The EEOC also explains that compensatory damages may also cover 'any emotional harm suffered (such as mental anguish, inconvenience, or loss of enjoyment of life)' to put it simply. In contrast, the corrective purpose of compensatory damages is to help plantiff suffer as a result of a claimed offense; Are there damages other than compensatory? Compensatory damages differ from punitive damages. Punitive damages serve the sole purpose of reprimanding a defendant. The different kinds of compensatory damages. There are two kinds of compensatory damages. The first is special damages. Special damages refer to easily calculated damages that have bills. For instance, court can easily calculate amount to include there medical expenses for emotional stress. The other kinds of compensatory damages are what's known as general damages. These include recognizing for items such as pain, suffering and emotional stress being. These damages are difficult to calculate as the amount required to satisfy them is much more subjective than is special damages.",
@@ -34,7 +34,7 @@ var blogPosts = []BlogPost{
 	},
 	{
 		ID:      2,
-		Title:   "Understanding Compensatory Damages in an ADA Context",
+		Title:   "Understanding Elvis 3",
 		Date:    "Dec 2023 • 5 min Read",
 		Slug:    "understanding-compensatory-damages-ada-2",
 		Content: "In ADA cases, prevailing plaintiffs are often awarded what's known as compensatory damages. These, along with punitive damages, help make up the sum of remedies owed by defendants found guilty of ADA violations.",
@@ -42,7 +42,7 @@ var blogPosts = []BlogPost{
 	},
 	{
 		ID:      3,
-		Title:   "Understanding Compensatory Damages in an ADA Context",
+		Title:   "Understanding Elvis 4",
 		Date:    "Dec 2023 • 5 min Read",
 		Slug:    "understanding-compensatory-damages-ada-3",
 		Content: "In ADA cases, prevailing plaintiffs are often awarded what's known as compensatory damages. These, along with punitive damages, help make up the sum of remedies owed by defendants found guilty of ADA violations.",
@@ -50,7 +50,7 @@ var blogPosts = []BlogPost{
 	},
 	{
 		ID:      4,
-		Title:   "Understanding Compensatory Damages in an ADA Context",
+		Title:   "Understanding Elvis 5",
 		Date:    "Dec 2023 • 5 min Read",
 		Slug:    "understanding-compensatory-damages-ada-4",
 		Content: "In ADA cases, prevailing plaintiffs are often awarded what's known as compensatory damages. These, along with punitive damages, help make up the sum of remedies owed by defendants found guilty of ADA violations.",
